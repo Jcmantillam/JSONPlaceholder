@@ -1,0 +1,5 @@
+django==3.1.7
+django-rest-framework
+python-decouple
+flake8
+requests
