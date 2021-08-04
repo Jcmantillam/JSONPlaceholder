@@ -102,7 +102,7 @@ def consult_process(data: Dict) -> Dict:
 
 
 '''
-Givven a object(dictionary), and a type, verifys if the
+Given a object(dictionary), and a type, verifys if the
 object is saved in the local BD. If the object does not
 exist in local BD, then it is saved.
     params: object:Dict, object_type:str
@@ -244,7 +244,6 @@ def verify_and_save(object: Dict, object_type: str) -> None:
             object=user_obj,
             object_type='user'
         )
-        #import pdb; pdb.set_trace()
         user = BlogUser.objects.filter(username=user_obj['username'])
         todo = Todo.objects.filter(
             title=object['title'],

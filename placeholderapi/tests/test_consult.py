@@ -49,7 +49,7 @@ class AlbumTestCase(TestCase):
         self.assertEqual(len(users), 10)
         
 
-    #Consult and save posts tests
+    #Consult and save posts
     def test_post_1(self):
         client = APIClient()
 
@@ -72,6 +72,7 @@ class AlbumTestCase(TestCase):
         self.assertEqual(len(posts), 1)
 
 
+    #Consult and save posts
     def test_posts(self):
         client = APIClient()
 
@@ -91,6 +92,7 @@ class AlbumTestCase(TestCase):
         self.assertEqual(len(posts), 100)
 
 
+    #Consult and save albums
     def test_album(self):
         client = APIClient()
 
@@ -113,10 +115,11 @@ class AlbumTestCase(TestCase):
         self.assertEqual(len(users), 1)
 
 
+    #Consult and save comments
     def test_comment(self):
         client = APIClient()
 
-        #saving album and user
+        #saving album and post
         test_consult_data = {
             "service" : "/comments/1",
             "save_result" : True
@@ -135,10 +138,11 @@ class AlbumTestCase(TestCase):
         self.assertEqual(len(post), 1)
 
 
+    #Consult and save photos
     def test_photo(self):
         client = APIClient()
 
-        #saving album and user
+        #saving photo and album
         test_consult_data = {
             "service" : "/photos/1",
             "save_result" : True
@@ -157,10 +161,11 @@ class AlbumTestCase(TestCase):
         self.assertEqual(len(album), 1)
 
 
+    #Consult and save todo
     def test_todo(self):
         client = APIClient()
 
-        #saving album and user
+        #saving todo and user
         test_consult_data = {
             "service" : "/todos/1",
             "save_result" : True

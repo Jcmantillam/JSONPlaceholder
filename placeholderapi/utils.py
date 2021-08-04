@@ -2,7 +2,11 @@ import json
 import requests
 from typing import List, Set, Dict, Tuple, Optional
 
-
+'''
+Method used to consume rest API services.
+    params: url:str, method:str, headers:Dict, data:Dict
+    returns: Dict
+'''
 def API_requests(url: str, method:str, headers: Dict, data: Dict):
     response = requests.request(
         method,
@@ -13,6 +17,12 @@ def API_requests(url: str, method:str, headers: Dict, data: Dict):
     return response
 
 
+'''
+Method used to clasify the object obtained from a consult
+if its is not null.
+    params: data:Dict
+    returns: Dict
+'''
 def identify_object(data: Dict):
     keys = list(data.keys())
     

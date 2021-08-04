@@ -9,6 +9,13 @@ cd jsonplaceholder
 pip install -r requirements.txt
 python manage.py migrate
 ```
+
+## Tests
+Las pruebas pueden ser encontradas en `/placeholderapi/tests`:
+```
+python manage.py test
+```
+
 ## Servicios
 Se tiene varios servicios requeridos para el CRUD, los recusros soportados son los mismos que aparacen en JSONPlaceholder:
 - /posts
@@ -25,9 +32,7 @@ Se tiene varios servicios requeridos para el CRUD, los recusros soportados son l
  * **Métodos soportados:**
   `GET` `POST` `DELETE`
 
-* **GET**
-
-* **Parámetros de datos**
+* **Parámetros de datos (POST)**
 **Requeridos:**<br>
   `name=[String]`<br>
   `username:[String]`<br>
@@ -40,77 +45,36 @@ Se tiene varios servicios requeridos para el CRUD, los recusros soportados son l
 * **Respuesta:**
   
   En BD Local
-  * **Código:** 200 <br>
+  * **Código:** 201 <br>
   * **Contenido:** <br><br>
   
   ```
-  [
-    {
-        "id": 5,
-        "title": "Python machine learning",
-        "subtitle": "aprendizaje automático y aprendizaje profundo con Python, scikit-learn y TensorFlow",
-        "release_date": "2019-01-01",
-        "image": null,
-        "description": "Not found",
-        "editor": 5,
-        "authors": [
-            8,
-            9
-        ],
-        "categories": [
-            17
-        ],
-        "service": "local"
-    }
-  ]
+  {
+    "id": 1,
+    "name": "Camilo",
+    "username": "cmantillam",
+    "email": "manti@unal.edu.co",
+    "address": {},
+    "phone": "45678982",
+    "website": "www.web.com",
+    "company": {}
+  }
   ``` 
   
   
- ### Save Book
+ ### Consult
 
-  Este servicio está habilitado para guardar un resultado de la búsqueda externa seleccionada, sea `GoogleBooks` u `Oreilly`, como se puede observar, en los resultados de búsqueda anteriores, al final de los campos de cada libro, aparece un campo llamado `save_link`, este campo facilita el vínculo para realizar el guardado  del libro al cual pertenece en la BD local.
+  Permite consultar los distintos servicios habilitados en JSONPlaceholder, adicionalmente permite guardar la consulta, clasificando los datos obtenidos para guardarlos de la manera adecuada en la BD local junto con sus relaciones requeridas. Por ejemplo, si se conultan posts, estos son creados por usuarios, por se busca el usuario, de confirma si existe, de no existir, se guarda también y finalmente, se guarda el post con su usuario asigando.
  
- * **URL:** <api/v1/save_book/>
- 
- * **Método:**
-  `POST`
- 
- **Headers**
-
-|**Name**|**Type**|**Description**|
-|------|------|------|
-| <center>Authorization</center> | <center>string</center>  | <center>Token String</center> |
-
-* **Parámetros en URL**
-**Requeridos:**<br>
-  `?book_id_g=:[String]`<br>
-  `?book_id_o=:[String]`<br><br>
- `?book_id_g=` es para guardar un libro encontrado en el API de Google, mientras que `?book_id_o=` es para guardar un libro del API de Oreilly<br>
-
-* **Respuesta:**
-  
-  En BD Local
-  * **Código:** 201 <br>
-
-### Delete Book
-
-  Con este servicio se puede eliminar un libro de la BD local.
- 
- * **URL:** <api/v1/delete_book/>
+ * **URL:** <api/v1/consult/>
  
  * **Método:**
   `POST`
 
-**Headers**
-
-|**Name**|**Type**|**Description**|
-|------|------|------|
-| <center>Authorization</center> | <center>string</center>  | <center>Token String</center> |
-
-* **Parámetros de datos**
+* **Parámetros de datos (POST)**
 **Requeridos:**<br>
-  `id=[integer]`<br><br>
- `id` es el id del libro que se desea eliminar.<br>
+  `service=[String]` (Se señala el servicio que se quiere consumir en JSONPlaceholder)<br>
+  `save_result=[Boolean]` (Se indica si se quieren guardar los objetos resultantes)<br><br>
 
 * **Respuesta:**
   
